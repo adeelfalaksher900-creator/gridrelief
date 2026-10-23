@@ -61,3 +61,7 @@ Devpost's saved name, story, live link and renamed repository link were verified
 ## Version 2 interaction capture
 
 The deployed structural redesign replaced the sidebar, color system and radial network with top navigation, a left settings rail and editable battery allocation cards. Verified Northside communications load 0.35→0.5 kW, save/recalculation, 12-hour recalculation, the explicit 60% infeasibility message, restoration of 24 hours/10%, three stress cases, real forecast loading/reset, named save/reopen, and a 2168-character clipboard JSON import round trip. Deployed Chrome reported no captured warnings/errors. Phone 390 px and tablet 768 px showed no document overflow; six phone hub cards were present. Fifteen new 3:2 captures replaced the previous gallery. The website gallery route was removed from the published static directory at the participant’s request.
+
+## Final video checks
+
+The Hyperframes output is H.264/AAC MP4, 1920 × 1080, 30 fps, 112 seconds and 3360 frames (20,128,003 bytes). FFmpeg decoded the complete video and audio streams without errors. All 27 scene midpoints were visually reviewed from the final MP4. Final Hyperframes checks reported no runtime, layout, motion or craft errors; all 18 sampled overlay-text contrast checks passed. A duplicate-media warning reflects intentional reuse of one real browser capture. This is a frame-based walkthrough of actual browser interactions with ElevenLabs narration, not a claim of continuous 30 fps browser recording.
