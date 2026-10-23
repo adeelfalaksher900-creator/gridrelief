@@ -1,21 +1,29 @@
-# GridRelief
+<p align="center"><img src="dist/icon.svg" width="76" height="76" alt="Hubmorrow logo"></p>
+<h1 align="center">Hubmorrow</h1>
+<p align="center"><strong>Backup power, planned.</strong></p>
+<p align="center">Share limited batteries across community hubs.<br>See what stays powered — and where the gaps remain.</p>
+<p align="center">
+<img alt="JavaScript ES Modules" src="https://img.shields.io/badge/JavaScript-ES_Modules-194f3d?style=flat-square">
+<img alt="HTML5" src="https://img.shields.io/badge/HTML5-Semantic-194f3d?style=flat-square">
+<img alt="CSS3" src="https://img.shields.io/badge/CSS3-Responsive-194f3d?style=flat-square">
+<img alt="Node.js 22+" src="https://img.shields.io/badge/Node.js-22%2B-194f3d?style=flat-square">
+<img alt="MIT license" src="https://img.shields.io/badge/License-MIT-194f3d?style=flat-square">
+</p>
+<p align="center"><a href="https://hubmorrow.sturdynova2049.chatgpt.site"><strong>Open the app ↗</strong></a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="docs/QA.md">Test record</a> · <a href="docs/RESEARCH.md">Research</a></p>
 
-**Put limited backup power where it can do the most good.**
+![The Hubmorrow planning workspace](docs/preview.jpg)
 
-A community resilience planning application that allocates portable battery packs across illustrative community hubs, simulates hourly essential-service continuity, and explains the trade-off against a round-robin baseline.
+**For community coordinators preparing for an outage.** Enter each hub’s power needs, choose your batteries, and calculate how to share them. Test the plan with less sun or a longer outage before you commit.
 
-- **Live application:** https://gridrelief-humanity.sturdynova2049.chatgpt.site
-- **Primary hackathon track:** Power & Energy — IEEE Hack for Humanity
-- **Status:** functional planning prototype; synthetic facility assumptions; optional real forecast integration
-- **Runtime:** browser-native JavaScript, SVG, a module Web Worker; no paid APIs or application server
+Built for **IEEE Hack for Humanity · Power & Energy**. The core journey works in the browser with **no account, API key, application server, or third-party runtime packages**. Starting hub values are sample data; optional Charlotte weather comes from Open-Meteo.
 
-## The problem and decision
+## The problem
 
 A community coordinator has several places that could support residents during an outage and a limited inventory of portable batteries. Equal battery counts do not imply equal service: each hub has different loads, solar availability, occupancy assumptions, and community priorities.
 
-GridRelief answers a bounded question: **given these inputs, how should whole battery packs be allocated, and where does that plan still leave service gaps?** It is a preparedness simulator, not an outage prediction system or operational electrical controller.
+Hubmorrow answers a bounded question: **given these inputs, how should whole battery packs be allocated, and where does that plan still leave service gaps?** Every calculated plan shows its assumptions and unmet power needs.
 
-## Working features
+## What you can do
 
 - Six editable illustrative hubs, each with communications, refrigeration, cooling, lighting, solar, occupancy, and priority inputs.
 - Battery count, kWh capacity, inverter kW, initial charge, reserve, and efficiency controls.
@@ -29,7 +37,7 @@ GridRelief answers a bounded question: **given these inputs, how should whole ba
 - Per-hub allocation explanations tied to actual minimum packs and one-pack counterfactual score losses.
 - Responsive layouts, keyboard-operable forms and dialogs, accessible hourly data tables, and reduced-motion support.
 
-## Run locally
+## Quick start
 
 Requirements: Python 3 for a simple static server; Node.js 22+ to run the tests. No package installation is required.
 
@@ -65,7 +73,7 @@ flowchart TD
 
 There is no central database, authentication, multi-user synchronization, analytics, or server-side personal data storage. Those are not needed for this single-user planning journey. Local storage holds a maximum of 30 scenarios; imported JSON is limited to 1 MB, 8 hubs, 18 packs, and bounded numerical inputs.
 
-## The model
+## How the calculations work
 
 Each time step is one hour. Solar serves loads first. Surplus can charge batteries; deficits can discharge them subject to power, state-of-charge, reserve, and efficiency limits. Unmet load is recorded. Energy conservation is tested:
 
@@ -84,7 +92,7 @@ Stress-aware optimization uses **the sum of each hub's worst-case score**, not t
 
 The service floor is an energy coverage constraint. With stress-aware planning enabled, it must hold at each hub across all three cases; in nominal mode it applies only to the planned outage. The baseline first assigns the minimum feasible packs per hub, then distributes remaining packs in listed round-robin order.
 
-## Reproducible evidence
+## Check the sample result
 
 The default training case uses eight 30 kWh packs, a 24-hour outage from 16:00, 90% initial charge, 10% reserve, 94% round-trip efficiency, 55% solar availability, and a 10% per-hub floor. Results can be reproduced with:
 
@@ -102,7 +110,7 @@ Default weather is a deterministic synthetic daylight/temperature curve. The opt
 
 - Belding and Beshilas, **Ensuring Resilient Operations of Solar-Plus-Storage Community Resilience Hubs**, NREL/DOE, 2024: https://www.nlr.gov/docs/fy24osti/89601.pdf
 - **REopt Web Tool User Manual**, an established energy/resilience optimization reference: https://reopt.nlr.gov/tool/reopt-user-manual.pdf
-- **Open-Meteo Forecast API**, weather model outputs, CC BY 4.0 data attribution; free endpoint is for noncommercial use: https://open-meteo.com/en/docs and https://open-meteo.com/en/terms
+- **Open-Meteo Forecast API**, weather model outputs, CC BY 4.0 data attribution; [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/); raw snapshots are retained and derived model outputs apply configured scaling. The free endpoint is for noncommercial use: https://open-meteo.com/en/docs and https://open-meteo.com/en/terms
 - **Apple Human Interface Guidelines**, accessibility, layout, and charts informed design principles; no Apple assets or interface were copied: https://developer.apple.com/design/human-interface-guidelines
 
 REopt is a research reference, not a dependency or integrated service. No code was copied from competing projects. See [research and compliance](docs/RESEARCH.md) for the idea comparison and [architecture](docs/ARCHITECTURE.md) for the schema and contracts.
@@ -111,7 +119,7 @@ For observed browser results and remaining verification limits, see [QA record](
 
 ## Deployment
 
-Deploy the contents of `dist/` to a static host using HTTPS. No build transform or environment variables are required. Vercel or Netlify can use `dist` as the output directory and an empty build command. The provided deployment is hosted with ChatGPT Sites; `.openai/hosting.json` identifies that deployment.
+Deploy the contents of `dist/` to a static host using HTTPS. No build transform or environment variables are required. Vercel or Netlify can use `dist` as the output directory and an empty build command. The live review build is hosted with ChatGPT Sites. The public source can also be served on any static host.
 
 Recommended security headers are supplied in `dist/_headers` for hosts that support that file. Verify the target host actually applies them. The application requires same-origin module scripts/workers and outbound access only to `https://api.open-meteo.com` for its optional forecast. No secret belongs in the browser bundle.
 
@@ -126,3 +134,22 @@ This model omits site surveys, installation/travel time, inverter compatibility,
 Developed for this project with substantial ChatGPT/Codex assistance in research, design, architecture, implementation, testing, and documentation. The runtime uses deterministic calculations and has no language-model dependency. Human team-member responsibilities have not been supplied and are not invented here. Participants must verify and own the claims before final submission.
 
 MIT license for original code. External data, reference documents, and service terms retain their respective licenses. See [LICENSE](LICENSE).
+
+## Submission review
+
+The [Devpost project draft](https://devpost.com/software/gridrelief-community-backup-power-planner) contains the saved story and links and remains incomplete pending media and participant review. See [handoff](docs/HANDOFF.md) and [submission text](docs/DEVPOST_DRAFT.md). The project stays a draft until participant review. Final submission is a separate action.
+
+## Project layout
+
+| Path                                 | Purpose                                                  |
+| ------------------------------------ | -------------------------------------------------------- |
+| `dist/index.html`, `dist/styles.css` | Accessible responsive interface                          |
+| `dist/app.js`                        | Navigation, editing, charts, weather and browser storage |
+| `dist/engine.js`                     | Validation, energy simulation and exact allocator        |
+| `dist/worker.js`                     | Background calculation                                   |
+| `tests/engine.test.mjs`              | Model and security regression tests                      |
+| `docs/`                              | Research, architecture, design and QA evidence           |
+
+## Contributing
+
+Create a focused branch and open a pull request. Explain the problem, resulting behavior and relevant test results. Run `npm run build` before review. Keep secrets and personal data out of source and fixtures. Branch protection is pending the owner’s GitHub access verification; it is not claimed as enabled.
