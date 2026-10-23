@@ -1,0 +1,1 @@
+{"name":"gridrelief","version":"1.0.0","private":true,"type":"module","description":"Community resilience battery allocation and outage simulation","scripts":{"test":"node --test tests/*.test.mjs","check":"node --check dist/engine.js && node --check dist/app.js && node --check dist/worker.js","build":"npm run check && npm test"},"engines":{"node":">=22"},"license":"MIT"}
