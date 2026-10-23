@@ -1,2 +1,125 @@
-# gridrelief
-Community backup-power allocation with an exact optimizer, energy-conserving outage simulation, and transparent stress tests. IEEE Hack for Humanity.
+# GridRelief
+
+**Put limited backup power where it can do the most good.**
+
+A community resilience planning application that allocates portable battery packs across illustrative community hubs, simulates hourly essential-service continuity, and explains the trade-off against a round-robin baseline.
+
+- **Live application:** https://gridrelief-humanity.sturdynova2049.chatgpt.site
+- **Primary hackathon track:** Power & Energy — IEEE Hack for Humanity
+- **Status:** functional planning prototype; synthetic facility assumptions; optional real forecast integration
+- **Runtime:** browser-native JavaScript, SVG, a module Web Worker; no paid APIs or application server
+
+## The problem and decision
+
+A community coordinator has several places that could support residents during an outage and a limited inventory of portable batteries. Equal battery counts do not imply equal service: each hub has different loads, solar availability, occupancy assumptions, and community priorities.
+
+GridRelief answers a bounded question: **given these inputs, how should whole battery packs be allocated, and where does that plan still leave service gaps?** It is a preparedness simulator, not an outage prediction system or operational electrical controller.
+
+## Working features
+
+- Six editable illustrative hubs, each with communications, refrigeration, cooling, lighting, solar, occupancy, and priority inputs.
+- Battery count, kWh capacity, inverter kW, initial charge, reserve, and efficiency controls.
+- Nominal or conservative stress-aware exact integer optimization.
+- An optional minimum service floor at every hub, with explicit infeasibility feedback.
+- Hourly solar/storage/load balance, service coverage, unmet kWh, and a priority-weighted score.
+- A fixed-allocation stress lab: planned outage, 40% solar reduction, and a 12-hour longer outage with 15% higher demand (60-hour cap).
+- A round-robin comparison that obeys the same selected floor.
+- Optional Open-Meteo hourly forecast for fixed Charlotte coordinates, with timeout, response validation, explicit provenance, and a synthetic-weather reset.
+- Local scenario saving, restore/removal, JSON import/export, formula-safe CSV export, and print report.
+- Responsive layouts, keyboard-operable forms and dialogs, accessible hourly data tables, and reduced-motion support.
+
+## Run locally
+
+Requirements: Python 3 for a simple static server; Node.js 22+ to run the tests. No package installation is required.
+
+```bash
+python3 -m http.server 8000 --directory dist
+```
+
+Open http://localhost:8000. Serve over HTTP rather than opening `index.html` as a file so browser modules and the worker load correctly.
+
+```bash
+npm run check
+npm test
+```
+
+The tests cover hand-calculated discharge, inverter and reserve limits, loss accounting, energy conservation, zero batteries, infeasible floors, exhaustive-search agreement, floor enforcement, input validation, weather units and horizon, formula injection protection, and monotonic optimal scores.
+
+## Architecture and data flow
+
+```mermaid
+flowchart TD
+  A["Editable scenario inputs"] --> B["Validation and range limits"]
+  B --> C["Module Web Worker"]
+  C --> D["Hourly energy simulation"]
+  D --> E["Exact battery allocation DP"]
+  E --> F["Allocation and stress results"]
+  F --> G["SVG charts and accessible tables"]
+  F --> H["JSON, CSV and print exports"]
+  I["Optional Open-Meteo forecast"] --> B
+  J["Local scenario storage"] --> B
+```
+
+`dist/engine.js` is the pure model, validator, optimizer, and CSV serializer. `dist/worker.js` runs the optimizer off the UI thread. `dist/app.js` owns interface state, chart rendering, scenario storage, and the optional forecast call. If module workers are unavailable, the same deterministic model runs on the main thread.
+
+There is no central database, authentication, multi-user synchronization, analytics, or server-side personal data storage. Those are not needed for this single-user planning journey. Local storage holds a maximum of 30 scenarios; imported JSON is limited to 1 MB, 8 hubs, 18 packs, and bounded numerical inputs.
+
+## The model
+
+Each time step is one hour. Solar serves loads first. Surplus can charge batteries; deficits can discharge them subject to power, state-of-charge, reserve, and efficiency limits. Unmet load is recorded. Energy conservation is tested:
+
+`initial storage + solar = supplied loads + spilled solar + losses + ending storage`
+
+- Approximate PV output: `array kWp × horizontal irradiance / 1000 × 0.80`.
+- Charge/discharge efficiency each equals the square root of the configured round-trip efficiency.
+- Cooling factor: `clamp(0.75 + max(0, temperature − 24) × 0.075, 0.5, 2.5)`.
+- Lighting factor: 1 between 18:00 and 07:00; otherwise 0.35.
+- Loads at a hub are served proportionally as an essential bundle.
+- Equivalent service-hours: sum of each hour's supplied/demand fraction.
+- Nominal score: service-hours × assumed occupancy × user-set priority, summed across hubs.
+- Stress-aware score: each hub's lowest service-hours/duration ratio across the three stress cases × planned duration × occupancy × priority, summed across hubs.
+
+Stress-aware optimization uses **the sum of each hub's worst-case score**, not the worst system-wide score across scenarios. Dynamic programming is exact for this separable discrete model. The state is `(hubs processed, packs used)`; transition complexity is O(hubs × packs²), after precomputing simulations. All available packs are allocated; zero marginal-value packs may still be assigned deterministically.
+
+The service floor is an energy coverage constraint. With stress-aware planning enabled, it must hold at each hub across all three cases; in nominal mode it applies only to the planned outage. The baseline first assigns the minimum feasible packs per hub, then distributes remaining packs in listed round-robin order.
+
+## Reproducible evidence
+
+The default training case uses eight 30 kWh packs, a 24-hour outage from 16:00, 90% initial charge, 10% reserve, 94% round-trip efficiency, 55% solar availability, and a 10% per-hub floor. Results can be reproduced with:
+
+```bash
+node --input-type=module -e "import {defaults,plan} from './dist/engine.js'; const p=plan(defaults()); console.log(p.optimal.allocation,p.optimal.totals,p.score,p.baselineScore)"
+```
+
+The default allocation is `[1, 4, 1, 0, 1, 1]` in hub table order. The central hub receives no pack because its modeled solar output already meets the chosen minimum. The optimized priority score is about 8.37% higher than the floor-compliant round-robin baseline **in this synthetic exercise**. That is not a measured improvement for a real community. Changes to assumptions can change the allocation and the result.
+
+## Data provenance and attribution
+
+All hub names, capacity assumptions, loads, solar installations, and priority weights are original illustrative fixtures. There is no live facility or outage dataset and no private household or medical information.
+
+Default weather is a deterministic synthetic daylight/temperature curve. The optional forecast requests four days of hourly temperature and shortwave radiation from Open-Meteo, starting at midnight on forecast day one in `America/New_York`. The start-hour setting is relative to that first date. Forecast snapshots retain their original retrieval time; they can be exported and replayed. Solar and stress multipliers remain in effect even when a forecast is loaded.
+
+- Belding and Beshilas, **Ensuring Resilient Operations of Solar-Plus-Storage Community Resilience Hubs**, NREL/DOE, 2024: https://www.nlr.gov/docs/fy24osti/89601.pdf
+- **REopt Web Tool User Manual**, an established energy/resilience optimization reference: https://reopt.nlr.gov/tool/reopt-user-manual.pdf
+- **Open-Meteo Forecast API**, weather model outputs, CC BY 4.0 data attribution; free endpoint is for noncommercial use: https://open-meteo.com/en/docs and https://open-meteo.com/en/terms
+- **Apple Human Interface Guidelines**, accessibility, layout, and charts informed design principles; no Apple assets or interface were copied: https://developer.apple.com/design/human-interface-guidelines
+
+REopt is a research reference, not a dependency or integrated service. No code was copied from competing projects. See [research and compliance](docs/RESEARCH.md) for the idea comparison and [architecture](docs/ARCHITECTURE.md) for the schema and contracts.
+
+## Deployment
+
+Deploy the contents of `dist/` to a static host using HTTPS. No build transform or environment variables are required. Vercel or Netlify can use `dist` as the output directory and an empty build command. The provided deployment is hosted with ChatGPT Sites; `.openai/hosting.json` identifies that deployment.
+
+Recommended security headers are supplied in `dist/_headers` for hosts that support that file. Verify the target host actually applies them. The application requires same-origin module scripts/workers and outbound access only to `https://api.open-meteo.com` for its optional forecast. No secret belongs in the browser bundle.
+
+## Privacy, safety, limitations
+
+Scenario inputs remain in the user's browser unless exported. Weather requests include only fixed Charlotte coordinates and normal network metadata. Local storage is not encrypted; avoid entering sensitive names or medical details. Same-device visitors to the same browser profile may access its saved scenarios.
+
+This model omits site surveys, installation/travel time, inverter compatibility, islanding equipment, surge currents, battery aging, detailed PV geometry, thermal comfort, weather probabilities, and electrical-network topology. Assumed occupancy is not a count of unique people helped. Energy availability does not prove food safety, medical suitability, or shelter suitability. Real deployment requires measured loads, community consultation, electrical engineering review, compatible certified equipment, and approved operating procedures.
+
+## Contribution and AI disclosure
+
+Developed for this project with substantial ChatGPT/Codex assistance in research, design, architecture, implementation, testing, and documentation. The runtime uses deterministic calculations and has no language-model dependency. Human team-member responsibilities have not been supplied and are not invented here. Participants must verify and own the claims before final submission.
+
+MIT license for original code. External data, reference documents, and service terms retain their respective licenses. See [LICENSE](LICENSE).
