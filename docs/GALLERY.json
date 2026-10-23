@@ -1,0 +1,122 @@
+[
+  {
+    "file": "01-power-planner.jpg",
+    "caption": "Plan backup power for a community. This sample shares eight batteries across six hubs and shows supplied energy, priority-score gain and remaining gaps.",
+    "title": "Power planner",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "74dbbce36dc2c314deda6697446b26eb9a4e496fd6caeb31f31d1676657036f6"
+  },
+  {
+    "file": "02-hub-needs.jpg",
+    "caption": "Set each hub's power needs. Edit phones and internet, refrigeration, cooling, lighting, solar capacity, expected occupancy and priority before calculating.",
+    "title": "Hub power needs",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "c0d53e83b0b9e0399dde39ce8007f4a2c4edb70f844b6c71b6e4816d788af68e"
+  },
+  {
+    "file": "03-battery-assumptions.jpg",
+    "caption": "Make the assumptions visible. Adjust initial battery charge, reserve, efficiency, solar availability and load levels before calculating.",
+    "title": "Battery assumptions",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "9c608722a565b7e6fd1a2485137cbd849dfadb45a8614f85ed86299034bc01ae"
+  },
+  {
+    "file": "04-recalculate.jpg",
+    "caption": "Explore a shorter outage. Changing the duration to 12 hours recalculates battery assignments, energy coverage and the hourly power balance.",
+    "title": "Recalculate an outage",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "66f681de63ac10263272fc08b158de10fa5b6364da64da198244654da1181550"
+  },
+  {
+    "file": "05-infeasible-minimum.jpg",
+    "caption": "Get a clear answer when a request is impossible. A 60% minimum at every hub cannot be met with eight packs, so the app asks for more batteries, lower loads or a lower minimum.",
+    "title": "Clear infeasibility",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "143214bba89006999664ce32630e048d31bf040bd67952b1562901f4728b13a7"
+  },
+  {
+    "file": "06-stress-tests.jpg",
+    "caption": "Test the same battery plan in three conditions: the planned outage, 40% less solar, and a 12-hour longer outage with 15% more demand. The round-robin comparison uses the same resources and minimum.",
+    "title": "Test three conditions",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "16be203532ca7672635c7a275a30211899765a276cceb7ce4b31e078c18b7d99"
+  },
+  {
+    "file": "07-allocation-reasons.jpg",
+    "caption": "See the reason for each assignment. The explanation shows the minimum packs needed and the priority-score loss from removing one pack, while keeping other assignments fixed.",
+    "title": "Allocation reasons",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "5474941cba7919dc3d4510850e994d26c8a96e09a89b95c2fc5e43987e72d1ca"
+  },
+  {
+    "file": "08-hourly-data.jpg",
+    "caption": "Inspect the hourly values behind the chart. The accessible table reports demand, supplied power, solar output and stored energy for each modeled hour.",
+    "title": "Hourly energy table",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "0865611e34b2a741235f6097bea79f392e967af964a2273b73ad76108aa9a495"
+  },
+  {
+    "file": "09-real-forecast.jpg",
+    "caption": "Use an optional Charlotte forecast from Open-Meteo. The app shows the snapshot date and retrieval time, retains attribution and recalculates with the selected weather. Hub values remain sample data.",
+    "title": "Optional weather",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "603911b25abd4564b3cc332332309188f00c9c079f66ddcf9f3cdc24ad5b2441"
+  },
+  {
+    "file": "10-save-plan.jpg",
+    "caption": "Keep a named plan in this browser. Save its inputs so you can open it later, change the assumptions and calculate again.",
+    "title": "Save a plan",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "0e71b01ecc3f3892c861358763b037b76f8ce4ecafb89f002577535abc55c58d"
+  },
+  {
+    "file": "11-saved-plans.jpg",
+    "caption": "Compare saved planning cases. These three sample plans were created through the app: a 24-hour storm, a 12-hour overnight outage and a 36-hour case without a minimum floor.",
+    "title": "Reopen saved plans",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "c00c47640ca7c817ae75bb7a0703cb91811a5fc337c1532de89e4adbdff313c6"
+  },
+  {
+    "file": "12-export-plan.jpg",
+    "caption": "Take the plan with you. Export calculated inputs and results as JSON, create a CSV allocation table, copy plan data or print a report. The JSON preview makes the inputs inspectable.",
+    "title": "Export and inspect",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "34a51c6ab1ffc10c695d338a767eb88cdb94bc0ed2986db5875f44e664e1c6b1"
+  },
+  {
+    "file": "13-import-plan.jpg",
+    "caption": "Reopen the same plan from JSON. Inputs are checked, imported results are discarded and the app calculates fresh results. Clipboard export and pasted import were verified end to end.",
+    "title": "Import and recalculate",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "806a26e4e0df5e1efde800a189a31bf6d7c6b25033c2695919f6339119282f53"
+  },
+  {
+    "file": "14-method-and-data.jpg",
+    "caption": "Know how the result works. Read the energy-balance rules, exact allocation method, data sources, privacy choices and practical limits before real use.",
+    "title": "Method and data",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "b55900cad9c65a4134b68a147f970078950688424daee55295ffe6a5dea5abe1"
+  },
+  {
+    "file": "15-responsive.jpg",
+    "title": "Phone and tablet",
+    "caption": "Use the planner on different screens. These unretouched browser captures show editable hub rows at 390 px and the plan tests at 768 px. The layout adapts without hiding the key decisions.",
+    "width": 1905,
+    "height": 1270,
+    "sha256": "b1865c0e18be7da5a60a967aa42cb99994ebb22444c07584582eebecd9e30b00"
+  }
+]
