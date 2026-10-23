@@ -6,7 +6,7 @@
 - Source: https://github.com/adeelfalaksher900-creator/hubmorrow
 - Saved Devpost preview: https://devpost.com/software/gridrelief-community-backup-power-planner
 - Submission editor: https://devpost.com/submit-to/31617-ieee-hack-for-humanity/manage/submissions/1257314-hubmorrow/project_details/edit
-- Image gallery: https://hubmorrow.sturdynova2049.chatgpt.site/media/
+- Image gallery files and captions: https://github.com/adeelfalaksher900-creator/hubmorrow/blob/main/docs/GALLERY.md
 
 ## Completed first phase
 
@@ -25,11 +25,11 @@ The Devpost preview was read after saving and showed the complete story, correct
 
 ## Media phase
 
-The participant subsequently authorized media production after the design work. Fifteen distinct application images and their captions are complete and available in the linked gallery. All are 1905 × 1270 JPEGs, below 5 MB each. Image 15 arranges unchanged phone and tablet captures on a labeled canvas. The other fourteen are actual deployed desktop views. See GALLERY.md and GALLERY.json for captions and checksums.
+The participant authorized a structural redesign and media production. Version 2 replaces the sidebar, palette and radial diagram with top navigation, a left settings rail and editable battery cards. The published website no longer has an image-gallery section. Fifteen new 1905 × 1270 application images and their captions are prepared under docs/gallery, with checksums in GALLERY.json.
 
-The Devpost draft was reopened and confirmed to have an empty gallery. One image was downloaded to the participant's browser and its normal multi-file chooser was opened. Chrome rejected setting that file because the ChatGPT browser extension's “Allow access to file URLs” setting is disabled. No successful gallery upload is claimed. Enable that setting before resuming the upload and caption workflow; do not bypass it with an unofficial submission API.
+The participant reports enabling Chrome extension file access. Uploading and captioning the new images in the Devpost draft is the next account operation; success has not yet been verified.
 
-The required video field remains blank. No final MP4 has been produced. The available browser screenshot sampling was too slow for the intended smooth screen recording; the connected Remote Desktop Commander device remains offline. Automatic approval review rejected a metered TinyFish recording run because paid third-party automation was not specifically approved. No recording run was launched or charged. The next concrete option is approval for at most $1 from the existing TinyFish wallet for one bounded recording run, or an online recording device. See VIDEO_PLAN.md.
+A single ElevenLabs English voiceover was generated (107.886 seconds, 1722 credits). Actual deployed-browser interactions were captured for the edit, calculate, test, save, export and import journey. They are sequenced in Hyperframes with timestamped captions, a 112-second timeline and 30 fps output. Final MP4 export and full playback verification are still in progress. TinyFish was not used or charged.
 
 The user will upload the completed video to YouTube and supply its link. Final submission and acceptance of event terms remain separate actions requiring explicit authorization.
 

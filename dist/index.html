@@ -14,7 +14,7 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="./brand-card.svg" />
-    <meta name="theme-color" content="#f5f6f4" />
+    <meta name="theme-color" content="#f7f5ef" />
     <title>Hubmorrow — Backup power, planned</title>
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
@@ -58,7 +58,7 @@
       <div class="privacy-note">
         <span class="status-dot"></span> Private by design
         <p>Scenarios stay in this browser.</p>
-        <span class="version">HUBMORROW · V1.1</span>
+        <span class="version">HUBMORROW · V2.0</span>
       </div>
     </aside>
     <div class="app-shell">
@@ -68,8 +68,7 @@
           <strong id="view-label">Power planner</strong>
         </div>
         <div class="topbar-right">
-          <span class="location-label">Charlotte, NC</span
-          ><span class="training-pill">Sample plan</span
+          <span class="training-pill">Your planning workspace</span
           ><a
             href="https://ieee-ai-hack-for-humanity.devpost.com/"
             target="_blank"
@@ -84,7 +83,7 @@
           <div class="page-title">
             <div>
               <div class="eyebrow">Backup power, planned</div>
-              <h1>Plan power for every hub<span>.</span></h1>
+              <h1>Make every battery count<span>.</span></h1>
               <p>
                 Share limited batteries. See what stays powered — and where the
                 gaps remain.
@@ -103,9 +102,9 @@
           <div id="notice" class="notice" role="status">
             <span class="notice-icon">i</span
             ><span
-              >Start with this sample plan, or edit the hubs to match your
-              community.</span
-            ><button data-view="method">About sample data ↗</button>
+              >Your plan starts here. Set your hubs’ needs, choose your
+              batteries, and find the best fit.</span
+            ><button data-view="method">Data & assumptions ↗</button>
           </div>
           <ol class="planning-steps" aria-label="Planning steps">
             <li>
@@ -139,7 +138,7 @@
               <section class="network-card" aria-labelledby="network-heading">
                 <div class="network-top">
                   <div>
-                    <div class="eyebrow">Your community</div>
+                    <div class="eyebrow">Battery allocation</div>
                     <h2 id="network-heading">8 batteries. 6 community hubs.</h2>
                     <span id="network-subtitle"
                       >Computing your allocation…</span
@@ -152,9 +151,7 @@
                   <span
                     ><i class="legend-dot green"></i> Battery allocation</span
                   ><span><i class="legend-dot gray"></i> Shared inventory</span
-                  ><span class="network-caption"
-                    >Network schematic · not a map</span
-                  >
+                  ><span class="network-caption">Select a hub to edit</span>
                 </div>
               </section>
               <div id="plan-status" class="plan-status" role="status"></div>
@@ -408,7 +405,7 @@
                   </div>
                 </div>
                 <button id="weather-button" class="button secondary">
-                  Use Charlotte forecast ↗</button
+                  Use reference forecast ↗</button
                 ><button id="weather-reset" class="text-button" hidden>
                   Use sample weather
                 </button>
@@ -532,7 +529,7 @@
               <p>
                 The six default hubs, their names, occupancy assumptions,
                 electrical loads, solar installations, and priority weights are
-                illustrative. They do not represent verified Charlotte
+                illustrative. They do not represent verified real-world
                 facilities, shelter capacity, neighborhood demographics, or an
                 emergency service.
               </p>
@@ -605,7 +602,7 @@
               <p>
                 Default weather is a frozen synthetic daylight and temperature
                 curve. The optional weather button retrieves four days of hourly
-                temperature and shortwave radiation for the fixed Charlotte
+                temperature and shortwave radiation for the fixed reference
                 coordinates (35.2271, −80.8431), beginning at midnight on
                 forecast day one in America/New_York.
               </p>
@@ -680,7 +677,7 @@
         <footer class="app-footer">
           <span>Hubmorrow · Backup power, planned.</span
           ><span
-            >Planning model · Review before real use<br />Optional weather:
+            >Your data stays in this browser<br />Weather:
             <a
               href="https://open-meteo.com/"
               target="_blank"

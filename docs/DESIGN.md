@@ -8,18 +8,18 @@ Calm, practical and readable. The Apple design analysis informed restrained surf
 
 | Token             | Value                                  |
 | ----------------- | -------------------------------------- |
-| Canvas            | `#f5f6f4`                              |
-| Surface           | `#ffffff`                              |
-| Action            | `#194f3d`                              |
-| Action pressed    | `#103d2e`                              |
-| Diagram highlight | `#d8ecb6`                              |
-| Body ink          | `#1c2927`                              |
-| Supporting text   | `#5c6c62`                              |
-| Border            | `#dfe6df`                              |
+| Canvas            | `#f7f5ef`                              |
+| Surface           | `#fffefa`                              |
+| Action            | `#c94d25`                              |
+| Action pressed    | `#ab3d1a`                              |
+| Diagram highlight | `#ffb28c`                              |
+| Body ink          | `#172632`                              |
+| Supporting text   | `#747975`                              |
+| Border            | `#e4e3dc`                              |
 | Typeface          | System sans serif with tabular numbers |
 | Body and controls | 14–16 px                               |
 | Supporting type   | 11–13 px                               |
-| Page title        | 30–44 px                               |
+| Page title        | 38–68 px                               |
 | Spacing           | 4, 8, 12, 16, 24, 32 px                |
 | Radius            | 10 px controls; 18 px panels           |
 
@@ -36,3 +36,9 @@ Editing inputs marks results as previous and disables exports until recalculatio
 The original interface had tiny labels, prominent prototype language and algorithm jargon in its main flow. Version 1.1 raises the type scale, simplifies instructions and creates a consistent identity.
 
 12ui was installed and its pricing-only dry run inspected. Hosted generation requires a new GitHub OAuth approval for private profile and email access, so no paid generation or unapproved access occurred. Anatomy was not found in the available skill catalog. Remote Desktop Commander reported its device offline. Hype Design Production is for fixed event-certificate PDFs and did not apply to this interface. UI/UX Designer, Web Design, Redesign and Awesome DESIGN.md informed the review.
+
+## Version 2 structural redesign
+
+The fixed sidebar and radial green network were replaced. Navigation runs across a navy header. On desktop, the input rail is on the left and the result workspace on the right. Metrics lead, followed by six editable battery allocation cards with physical pack glyphs whose counts come from the solver. A warm ivory canvas and burnt orange actions replace the former green palette. Phone layouts retain readable text navigation and results-first flow.
+
+Reference review: public Mobbin dashboard patterns, Pinterest energy UI imagery, and four downloaded 12ui free corpus references (set 20261023-0). These informed hierarchy and density; no third-party assets are in the app. Anatomy is now available and was reviewed; its detailed physical-figure workflow was not needed for these allocation controls. The old gallery is no longer published as a website section. Submission images are maintained as documentation artifacts for Devpost.

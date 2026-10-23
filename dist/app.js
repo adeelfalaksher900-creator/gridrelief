@@ -192,37 +192,23 @@ function renderNetwork() {
     `${c.packs} batteries. ${c.hubs.length} community hubs.`;
   $("network-subtitle").textContent =
     `${c.packs} battery packs · ${number(c.packs * c.packKwh)} kWh total storage · ${c.hours}h outage`;
-  const positions =
-    c.hubs.length <= 6
-      ? [
-          [102, 63],
-          [318, 41],
-          [535, 63],
-          [102, 171],
-          [318, 192],
-          [535, 171],
-        ]
-      : c.hubs.map((h, i) => [75 + (i % 4) * 165, i < 4 ? 57 : 188]);
-  const cx = 318,
-    cy = 119;
-  let paths = "",
-    nodes = "";
-  c.hubs.forEach((h, i) => {
-    const [x, y] = positions[i] || [318, 119];
-    const s = r.optimal.sites[i];
-    const short = h.name
-      .replace(
-        /community hub|neighborhood center|resource hub|library hub|food pantry|gathering space/,
-        "",
-      )
-      .trim()
-      .slice(0, 18);
-    const solid = s.packs > 0;
-    paths += `<path d="M${cx} ${cy} Q${x} ${cy} ${x} ${y}" stroke="${solid ? "#8cbd84" : "#416652"}" stroke-width="${solid ? 1.5 : 1}" ${solid ? "" : 'stroke-dasharray="3 4"'} fill="none"/>`;
-    nodes += `<g><rect x="${x - 67}" y="${y - 22}" width="134" height="44" rx="9" fill="#244b3a" stroke="${solid ? "#7a9e63" : "#3c624b"}"/><rect x="${x - 54}" y="${y - 8}" width="19" height="16" rx="4" fill="${solid ? "#d7eeb5" : "#395f48"}"/><text x="${x - 44.5}" y="${y + 3}" text-anchor="middle" fill="${solid ? "#34502d" : "#a9c09f"}" font-size="10" font-weight="600">${s.packs}</text><text x="${x - 25}" y="${y - 2}" fill="#dcebd3" font-size="11">${e(short)}</text><text x="${x - 25}" y="${y + 10}" fill="#c0d5bd" font-size="9">${pct(s.coverage)} supplied</text></g>`;
-  });
-  $("network-diagram").innerHTML =
-    `<svg viewBox="0 0 636 245" role="img" aria-label="Schematic battery allocation across ${c.hubs.length} illustrative hubs. Full results are in the allocation table."><defs><pattern id="network-grid" width="17" height="17" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#668567" opacity=".28"/></pattern></defs><rect width="636" height="245" fill="url(#network-grid)"/>${paths}<circle cx="${cx}" cy="${cy}" r="23" fill="#d9edb7"/><path d="M306 107h7v8h10v-8h7v24h-7v-9h-10v9h-7z" fill="#33542e"/>${nodes}</svg><div class="network-mobile-grid">${c.hubs.map((h, i) => `<button type="button" data-edit="${e(h.id)}" aria-label="Edit ${e(h.name)}"><span class="network-mobile-count">${r.optimal.sites[i].packs}<small>packs</small></span><span><strong>${e(h.name)}</strong><small>${pct(r.optimal.sites[i].coverage)} of power needs supplied</small></span><span aria-hidden="true">↗</span></button>`).join("")}</div>`;
+  $("network-diagram").innerHTML = `<div class="allocation-grid">${c.hubs
+    .map((h, i) => {
+      const site = r.optimal.sites[i];
+      const short = h.name
+        .replace(
+          /community hub|neighborhood center|resource hub|library hub|food pantry|gathering space/g,
+          "",
+        )
+        .trim();
+      const batteries = Array.from(
+        { length: Math.max(1, site.packs) },
+        (_, j) =>
+          `<span class="battery-unit ${site.packs === 0 ? "empty" : ""}" aria-hidden="true"><i></i><b></b><b></b><b></b></span>`,
+      ).join("");
+      return `<button type="button" class="allocation-hub" data-edit="${e(h.id)}" aria-label="Edit ${e(h.name)}"><span class="allocation-hub-top"><span class="hub-index">0${i + 1}</span><span class="allocation-arrow" aria-hidden="true">↗</span></span><strong>${e(short)}</strong><span class="battery-rack">${batteries}</span><span class="allocation-reading"><span><b>${site.packs}</b> ${site.packs === 1 ? "battery" : "batteries"}</span><span>${pct(site.coverage)} supplied</span></span><span class="allocation-meter" aria-hidden="true"><i style="width:${Math.min(100, site.coverage * 100)}%"></i></span></button>`;
+    })
+    .join("")}</div>`;
 }
 function renderMetrics() {
   const r = state.result,
@@ -259,14 +245,14 @@ function renderChart() {
   let grid = "";
   for (let i = 0; i <= 4; i++) {
     const v = (max * i) / 4;
-    grid += `<line x1="${left}" x2="${width - right}" y1="${y(v)}" y2="${y(v)}" stroke="#eaf0e5" stroke-dasharray="2 4"/><text x="${left - 8}" y="${y(v) + 3}" text-anchor="end" fill="#61745f" font-size="11">${number(v, 1)}</text>`;
+    grid += `<line x1="${left}" x2="${width - right}" y1="${y(v)}" y2="${y(v)}" stroke="#e7e8ec" stroke-dasharray="2 4"/><text x="${left - 8}" y="${y(v) + 3}" text-anchor="end" fill="#747784" font-size="11">${number(v, 1)}</text>`;
   }
   for (
     let i = 0;
     i < rows.length;
     i += Math.max(1, Math.floor(rows.length / 6))
   )
-    grid += `<text x="${x(i)}" y="${height - 13}" text-anchor="middle" fill="#61745f" font-size="11">${String(rows[i].hour).padStart(2, "0")}:00${i >= 24 ? " +1d" : ""}</text>`;
+    grid += `<text x="${x(i)}" y="${height - 13}" text-anchor="middle" fill="#747784" font-size="11">${String(rows[i].hour).padStart(2, "0")}:00${i >= 24 ? " +1d" : ""}</text>`;
   const circles = rows
     .map(
       (r, i) =>
@@ -274,7 +260,7 @@ function renderChart() {
     )
     .join("");
   $("energy-chart").innerHTML =
-    `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Hourly demand, served electrical load, and solar output in kilowatts. An accessible data table follows."><text x="${left}" y="10" font-size="10" fill="#61745f">kW</text>${grid}<path d="${line("served")} L${x(rows.length - 1)} ${y(0)} L${x(0)} ${y(0)} Z" fill="#e9f1df" opacity=".65"/><path d="${line("demand")}" stroke="#9daa96" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/><path d="${line("pv")}" stroke="#b89955" stroke-width="1.6" fill="none"/><path d="${line("served")}" stroke="#427248" stroke-width="2.5" fill="none" stroke-linejoin="round"/>${circles}</svg>`;
+    `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Hourly demand, served electrical load, and solar output in kilowatts. An accessible data table follows."><text x="${left}" y="10" font-size="10" fill="#747784">kW</text>${grid}<path d="${line("served")} L${x(rows.length - 1)} ${y(0)} L${x(0)} ${y(0)} Z" fill="#fbdacc" opacity=".65"/><path d="${line("demand")}" stroke="#9aa2af" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/><path d="${line("pv")}" stroke="#c49e4b" stroke-width="1.6" fill="none"/><path d="${line("served")}" stroke="#d75127" stroke-width="2.5" fill="none" stroke-linejoin="round"/>${circles}</svg>`;
   $("hourly-table").innerHTML =
     `<table><caption class="tiny">All readings are simulated hourly averages</caption><thead><tr><th>Outage hour</th><th>Local hour</th><th>Demand kW</th><th>Served kW</th><th>Solar kW</th><th>Stored kWh</th></tr></thead><tbody>${rows.map((r) => `<tr><td>${r.t + 1}</td><td>${String(r.hour).padStart(2, "0")}:00</td><td>${number(r.demand, 2)}</td><td>${number(r.served, 2)}</td><td>${number(r.pv, 2)}</td><td>${number(r.stored, 2)}</td></tr>`).join("")}</tbody></table>`;
 }
@@ -337,8 +323,8 @@ function updateWeatherLabel() {
     ? `Day one ${w.time[0].slice(0, 10)} · retrieved ${new Date(w.fetchedAt).toLocaleString()} · saved model output`
     : "Built-in data · no internet needed";
   $("weather-button").textContent = w
-    ? "Refresh Charlotte forecast ↗"
-    : "Use Charlotte forecast ↗";
+    ? "Refresh reference forecast ↗"
+    : "Use reference forecast ↗";
 }
 function readSaved() {
   try {
@@ -492,7 +478,7 @@ $("preset").addEventListener("change", () => {
   }
   if (value === "storm")
     Object.assign(c, {
-      name: "Charlotte storm plan",
+      name: "Community storm plan",
       hours: 24,
       startHour: 16,
       solarFactor: 55,
