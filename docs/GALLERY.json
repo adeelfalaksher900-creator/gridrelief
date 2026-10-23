@@ -5,7 +5,7 @@
     "title": "Power planner",
     "width": 1905,
     "height": 1270,
-    "sha256": "74dbbce36dc2c314deda6697446b26eb9a4e496fd6caeb31f31d1676657036f6"
+    "sha256": "5cae22c7c4e32380abe15c5a4a9dbc24dc6ae4b9431f90f0703b6170d062e49c"
   },
   {
     "file": "02-hub-needs.jpg",
@@ -13,7 +13,7 @@
     "title": "Hub power needs",
     "width": 1905,
     "height": 1270,
-    "sha256": "c0d53e83b0b9e0399dde39ce8007f4a2c4edb70f844b6c71b6e4816d788af68e"
+    "sha256": "5322486afcf088638bdb0357d2355d358690c3f9a2d1db2d0edc543929218cff"
   },
   {
     "file": "03-battery-assumptions.jpg",
@@ -21,7 +21,7 @@
     "title": "Battery assumptions",
     "width": 1905,
     "height": 1270,
-    "sha256": "9c608722a565b7e6fd1a2485137cbd849dfadb45a8614f85ed86299034bc01ae"
+    "sha256": "d7a78ba2c0af95fdb4e73f7faf07f49c3d2b62fa9a8e7a5fc7521981ecc15c47"
   },
   {
     "file": "04-recalculate.jpg",
@@ -29,7 +29,7 @@
     "title": "Recalculate an outage",
     "width": 1905,
     "height": 1270,
-    "sha256": "66f681de63ac10263272fc08b158de10fa5b6364da64da198244654da1181550"
+    "sha256": "6d05ba86b633182f710c59391a8e5e8ab6188afc641ef5c8da11ab8e0fbf4e61"
   },
   {
     "file": "05-infeasible-minimum.jpg",
@@ -37,7 +37,7 @@
     "title": "Clear infeasibility",
     "width": 1905,
     "height": 1270,
-    "sha256": "143214bba89006999664ce32630e048d31bf040bd67952b1562901f4728b13a7"
+    "sha256": "0eff8c68f04a4229c150b93a833320eb7844c201cc16212d8ab1c15466392ba3"
   },
   {
     "file": "06-stress-tests.jpg",
@@ -45,7 +45,7 @@
     "title": "Test three conditions",
     "width": 1905,
     "height": 1270,
-    "sha256": "16be203532ca7672635c7a275a30211899765a276cceb7ce4b31e078c18b7d99"
+    "sha256": "a8d63d335f736f4f48805b01d3f53491888d9d3187d5c6a6ba281739a14cdcc3"
   },
   {
     "file": "07-allocation-reasons.jpg",
@@ -53,7 +53,7 @@
     "title": "Allocation reasons",
     "width": 1905,
     "height": 1270,
-    "sha256": "5474941cba7919dc3d4510850e994d26c8a96e09a89b95c2fc5e43987e72d1ca"
+    "sha256": "6367cc27ed898ed8630a28cdffa7d9ef1244dcf3121585477f5c2c323b731a74"
   },
   {
     "file": "08-hourly-data.jpg",
@@ -61,15 +61,15 @@
     "title": "Hourly energy table",
     "width": 1905,
     "height": 1270,
-    "sha256": "0865611e34b2a741235f6097bea79f392e967af964a2273b73ad76108aa9a495"
+    "sha256": "64094b0d1746f869e442e495e208e5efb54cb21b194663e473c48c14fb4f3ae5"
   },
   {
     "file": "09-real-forecast.jpg",
-    "caption": "Use an optional Charlotte forecast from Open-Meteo. The app shows the snapshot date and retrieval time, retains attribution and recalculates with the selected weather. Hub values remain sample data.",
+    "caption": "Load optional Open-Meteo forecast data for the reference location. The source, forecast day and retrieval time remain visible. Hub inputs are sample values that you can edit.",
     "title": "Optional weather",
     "width": 1905,
     "height": 1270,
-    "sha256": "603911b25abd4564b3cc332332309188f00c9c079f66ddcf9f3cdc24ad5b2441"
+    "sha256": "adea90802a0a325e4309fdf68bc85321f79a7a7131f6bceb6dbf63dac6f329b8"
   },
   {
     "file": "10-save-plan.jpg",
@@ -77,15 +77,15 @@
     "title": "Save a plan",
     "width": 1905,
     "height": 1270,
-    "sha256": "0e71b01ecc3f3892c861358763b037b76f8ce4ecafb89f002577535abc55c58d"
+    "sha256": "91ef3c62694ddc64813a222ba4f4c9ae9f3dc116670d7e2aa3a60716e0f6696b"
   },
   {
     "file": "11-saved-plans.jpg",
-    "caption": "Compare saved planning cases. These three sample plans were created through the app: a 24-hour storm, a 12-hour overnight outage and a 36-hour case without a minimum floor.",
+    "caption": "Open named plans saved in this browser. Community backup plan was created through the real save flow, then reopened before export and import verification.",
     "title": "Reopen saved plans",
     "width": 1905,
     "height": 1270,
-    "sha256": "c00c47640ca7c817ae75bb7a0703cb91811a5fc337c1532de89e4adbdff313c6"
+    "sha256": "5a4e64ee65fceb4dd4ac4de220e40ee2db46a06538deba85711ed6cf8c0b1380"
   },
   {
     "file": "12-export-plan.jpg",
@@ -93,7 +93,7 @@
     "title": "Export and inspect",
     "width": 1905,
     "height": 1270,
-    "sha256": "34a51c6ab1ffc10c695d338a767eb88cdb94bc0ed2986db5875f44e664e1c6b1"
+    "sha256": "f414042964ee162aa15502b568636cf71af60f8780bca2a3dcab8fe112ac04b7"
   },
   {
     "file": "13-import-plan.jpg",
@@ -101,7 +101,7 @@
     "title": "Import and recalculate",
     "width": 1905,
     "height": 1270,
-    "sha256": "806a26e4e0df5e1efde800a189a31bf6d7c6b25033c2695919f6339119282f53"
+    "sha256": "3167a68f9651cd10e0edb3ad93c2f4348851e2812a7ac98d45a22f8f78845d01"
   },
   {
     "file": "14-method-and-data.jpg",
@@ -109,7 +109,7 @@
     "title": "Method and data",
     "width": 1905,
     "height": 1270,
-    "sha256": "b55900cad9c65a4134b68a147f970078950688424daee55295ffe6a5dea5abe1"
+    "sha256": "3a4373e3f1ce49fab516a697c2371e611bf9e5462428e6080795bb234a84418b"
   },
   {
     "file": "15-responsive.jpg",
@@ -117,6 +117,6 @@
     "caption": "Use the planner on different screens. These unretouched browser captures show editable hub rows at 390 px and the plan tests at 768 px. The layout adapts without hiding the key decisions.",
     "width": 1905,
     "height": 1270,
-    "sha256": "b1865c0e18be7da5a60a967aa42cb99994ebb22444c07584582eebecd9e30b00"
+    "sha256": "7d1e14655fae1429b22b087b844fb9c112357ccebacb89aa4c908e9d0de78f89"
   }
 ]
