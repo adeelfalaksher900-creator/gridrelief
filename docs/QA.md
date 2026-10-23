@@ -47,3 +47,13 @@ Observed on the public version 5 in Chrome: 390 × 844 viewport, no document hor
 Model checks: all 13 tests passed after changes. Syntax checks passed. Offline production dependency audit: zero vulnerabilities; no third-party runtime packages.
 
 Version 6 phone check: six readable hub rows rendered at 390 × 844. Opened the Northside editor from a row, changed the phone/internet load to 0.5 kW, saved and recalculated successfully. The final CSS disables global smooth anchor scrolling to keep focus and navigation immediate.
+
+## Final deployed design and media checks
+
+The subsequent gallery capture session verified the desktop workspace at 1920 × 1080, six editable phone rows at 390 px, and the stress view at 768 px. Fresh active tabs were used for phone and tablet viewport overrides. This later tablet observation supersedes the unsuccessful earlier override described above. No document-level horizontal overflow was observed in these views.
+
+All three stress cases rendered. A real Charlotte forecast loaded with source, date and retrieval time; sample weather was restored. Three named sample plans were saved through the actual interface. A 2168-character `hubmorrow-plan` JSON clipboard export was pasted into the import dialog and recalculated successfully. No warning or error messages were captured in these tested flows.
+
+Fifteen distinct final gallery JPEGs were checked: exactly 1905 × 1270 each, 3:2 aspect ratio, 2,140,006 bytes combined, largest 347,517 bytes, unique SHA-256 hashes. The public gallery rendered its fifteen captioned download links. These are genuine deployed application captures; the last image is a labeled arrangement of unchanged phone and tablet captures.
+
+Devpost's saved name, story, live link and renamed repository link were verified after navigation. Its gallery remained empty when reopened. The upload chooser accepted multiple selection, but Chrome rejected `setFiles` because extension access to file URLs is disabled. No gallery upload or final video is claimed. The draft remains incomplete and was not submitted.

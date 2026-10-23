@@ -23,6 +23,8 @@ A community coordinator has several places that could support residents during a
 
 Hubmorrow answers a bounded question: **given these inputs, how should whole battery packs be allocated, and where does that plan still leave service gaps?** Every calculated plan shows its assumptions and unmet power needs.
 
+[View 15 application screenshots with captions](https://hubmorrow.sturdynova2049.chatgpt.site/media/index.html).
+
 ## What you can do
 
 - Six editable illustrative hubs, each with communications, refrigeration, cooling, lighting, solar, occupancy, and priority inputs.

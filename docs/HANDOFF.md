@@ -5,7 +5,8 @@
 - Application: https://hubmorrow.sturdynova2049.chatgpt.site
 - Source: https://github.com/adeelfalaksher900-creator/hubmorrow
 - Saved Devpost preview: https://devpost.com/software/gridrelief-community-backup-power-planner
-- Submission editor: https://devpost.com/submit-to/31617-ieee-hack-for-humanity/manage/submissions/1257314-gridrelief-community-backup-power-planner/project_details/edit
+- Submission editor: https://devpost.com/submit-to/31617-ieee-hack-for-humanity/manage/submissions/1257314-hubmorrow/project_details/edit
+- Image gallery: https://hubmorrow.sturdynova2049.chatgpt.site/media/
 
 ## Completed first phase
 
@@ -22,12 +23,20 @@ The Devpost preview was read after saving and showed the complete story, correct
 - Official eligibility statements conflict: overview says US only/students/team required; detailed rules allow students/professionals and individual/team entries. Finalists are expected in Charlotte on October 24. Organizer clarification remains necessary; no eligibility or availability attestation was made.
 - Only the connected Devpost creator is currently listed. Additional teammate identities and individual responsibilities have not been supplied or invented.
 
-## Review before media production
+## Media phase
 
-The video walkthrough is required by the rules and its field remains blank. The requested final video and 15-image gallery have not been produced. A single authentic application screenshot may be used as repository/review evidence; it is not the final gallery.
+The participant subsequently authorized media production after the design work. Fifteen distinct application images and their captions are complete and available in the linked gallery. All are 1905 × 1270 JPEGs, below 5 MB each. Image 15 arranges unchanged phone and tablet captures on a labeled canvas. The other fourteen are actual deployed desktop views. See GALLERY.md and GALLERY.json for captions and checksums.
 
-After explicit approval of the project, produce the real deployed-product screen recording and the requested gallery. The user will upload the video and provide the hosted link. Final submission and acceptance of event terms remain separate actions requiring explicit authorization.
+The Devpost draft was reopened and confirmed to have an empty gallery. One image was downloaded to the participant's browser and its normal multi-file chooser was opened. Chrome rejected setting that file because the ChatGPT browser extension's “Allow access to file URLs” setting is disabled. No successful gallery upload is claimed. Enable that setting before resuming the upload and caption workflow; do not bypass it with an unofficial submission API.
+
+The required video field remains blank. No final MP4 has been produced. The available browser screenshot sampling was too slow for the intended smooth screen recording; the connected Remote Desktop Commander device remains offline. Automatic approval review rejected a metered TinyFish recording run because paid third-party automation was not specifically approved. No recording run was launched or charged. The next concrete option is approval for at most $1 from the existing TinyFish wallet for one bounded recording run, or an online recording device. See VIDEO_PLAN.md.
+
+The user will upload the completed video to YouTube and supply its link. Final submission and acceptance of event terms remain separate actions requiring explicit authorization.
+
+## Hostname
+
+The site slug is exactly `hubmorrow`. ChatGPT Sites retains the account segment in `hubmorrow.sturdynova2049.chatgpt.site`; its available slug setting cannot produce `hubmorrow.chatgpt.site`. No additional domain was purchased or DNS ownership assumed.
 
 ## Verification limits
 
-See QA.md for the observed test record. Training facility values are synthetic; no field impact is claimed. File-download receipt and print-to-PDF were not fully verified through automation; clipboard export and pasted JSON import were verified end to end. GitHub security verification and Discord login require the participant's own access. This prototype is not an operational emergency system or electrical design certification.
+See QA.md for the observed test record. Starting facility values are synthetic; no field impact is claimed. Application file-download receipt and print-to-PDF were not fully verified through automation; clipboard export and pasted JSON import were verified end to end. GitHub security verification and Discord login require the participant's own access. The planner does not control emergency equipment or certify electrical designs.
