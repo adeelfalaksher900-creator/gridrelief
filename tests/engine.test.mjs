@@ -55,3 +55,12 @@ test('CSV export neutralizes formula injection and preserves quotes',()=>{
 test('more packs cannot decrease the globally optimal objective',()=>{
  let last=-Infinity;for(let k=0;k<=9;k++){const r=plan({...defaults(),packs:k,floor:0});assert.ok(r.score>=last-1e-7);last=r.score;}
 });
+
+test('allocation explanations use the actual floor and counterfactual score',()=>{
+ const c=defaults(),r=plan(c);
+ for(const [i,x] of r.explanations.entries()){
+ assert.equal(x.packs,r.optimal.allocation[i]);assert.equal(x.minimumPacks,r.minimum[i]);assert.ok(x.removeOneScoreLoss>=-1e-7);
+ assert.equal(x.removalViolatesFloor,x.packs>0&&x.packs-1<x.minimumPacks);
+ close(x.nominalCoverage,r.optimal.sites[i].coverage);
+ }
+});

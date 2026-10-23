@@ -25,7 +25,8 @@ GridRelief answers a bounded question: **given these inputs, how should whole ba
 - A fixed-allocation stress lab: planned outage, 40% solar reduction, and a 12-hour longer outage with 15% higher demand (60-hour cap).
 - A round-robin comparison that obeys the same selected floor.
 - Optional Open-Meteo hourly forecast for fixed Charlotte coordinates, with timeout, response validation, explicit provenance, and a synthetic-weather reset.
-- Local scenario saving, restore/removal, JSON import/export, formula-safe CSV export, and print report.
+- Local scenario saving, restore/removal, file or pasted JSON import, JSON/clipboard export, formula-safe CSV export, and print report.
+- Per-hub allocation explanations tied to actual minimum packs and one-pack counterfactual score losses.
 - Responsive layouts, keyboard-operable forms and dialogs, accessible hourly data tables, and reduced-motion support.
 
 ## Run locally
@@ -91,7 +92,7 @@ The default training case uses eight 30 kWh packs, a 24-hour outage from 16:00, 
 node --input-type=module -e "import {defaults,plan} from './dist/engine.js'; const p=plan(defaults()); console.log(p.optimal.allocation,p.optimal.totals,p.score,p.baselineScore)"
 ```
 
-The default allocation is `[1, 4, 1, 0, 1, 1]` in hub table order. The central hub receives no pack because its modeled solar output already meets the chosen minimum. The optimized priority score is about 8.37% higher than the floor-compliant round-robin baseline **in this synthetic exercise**. That is not a measured improvement for a real community. Changes to assumptions can change the allocation and the result.
+The default allocation is `[1, 4, 1, 0, 1, 1]` in hub table order. The central hub receives no pack because its modeled solar output already meets the chosen minimum. The optimized priority score is about 8.37% higher than the floor-compliant round-robin baseline **in this synthetic exercise**. That is not a measured improvement for a real community. Changes to assumptions can change the allocation and the result. The score weights service continuity by occupancy and priority; its optimum can have lower aggregate kWh coverage than round-robin. Both measures are shown in the stress lab.
 
 ## Data provenance and attribution
 
@@ -105,6 +106,8 @@ Default weather is a deterministic synthetic daylight/temperature curve. The opt
 - **Apple Human Interface Guidelines**, accessibility, layout, and charts informed design principles; no Apple assets or interface were copied: https://developer.apple.com/design/human-interface-guidelines
 
 REopt is a research reference, not a dependency or integrated service. No code was copied from competing projects. See [research and compliance](docs/RESEARCH.md) for the idea comparison and [architecture](docs/ARCHITECTURE.md) for the schema and contracts.
+
+For observed browser results and remaining verification limits, see [QA record](docs/QA.md).
 
 ## Deployment
 

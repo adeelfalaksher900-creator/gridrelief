@@ -125,7 +125,8 @@ export function plan(raw){
   while(remainder-->0){baseline[j%n]++;j++;}
   const optimal=evaluate(c,best.allocation), equal=evaluate(c,baseline);
   const stress=cases.map(test=>({id:test.id,name:test.name,hours:test.hours,result:evaluate(c,best.allocation,test),baseline:evaluate(c,baseline,test)}));
-  return {version:VERSION,scenario:c,optimal,baseline:equal,stress,score:best.score,baselineScore:baseline.reduce((sum,k,i)=>sum+optionScore(i,k),0),minimum,transitions,method:c.robust?'Exact DP · conservative per-hub stress score':'Exact DP · nominal weighted service',generatedAt:new Date().toISOString()};
+  const explanations=c.hubs.map((h,i)=>{const k=best.allocation[i];return {id:h.id,packs:k,minimumPacks:minimum[i],nominalCoverage:cache[i][k][0].coverage,stressMinimumCoverage:Math.min(...cache[i][k].map(s=>s.coverage)),removeOneScoreLoss:k?optionScore(i,k)-optionScore(i,k-1):0,removalViolatesFloor:k>0&&k-1<minimum[i]};});
+  return {version:VERSION,scenario:c,optimal,explanations,baseline:equal,stress,score:best.score,baselineScore:baseline.reduce((sum,k,i)=>sum+optionScore(i,k),0),minimum,transitions,method:c.robust?'Exact DP · conservative per-hub stress score':'Exact DP · nominal weighted service',generatedAt:new Date().toISOString()};
 }
 export function toCsv(result){
   const quote=s=>'"'+String(s).replaceAll('"','""')+'"';
