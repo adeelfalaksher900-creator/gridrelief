@@ -1,0 +1,3 @@
+dist/** linguist-vendored=false
+docs/** linguist-documentation=true
+*.svg linguist-generated=false
