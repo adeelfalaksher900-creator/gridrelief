@@ -3,11 +3,11 @@
 <p align="center"><strong>Backup power, planned.</strong></p>
 <p align="center">Share limited batteries across community hubs.<br>See what stays powered — and where the gaps remain.</p>
 <p align="center">
-<img alt="JavaScript ES Modules" src="https://img.shields.io/badge/JavaScript-ES_Modules-194f3d?style=flat-square">
-<img alt="HTML5" src="https://img.shields.io/badge/HTML5-Semantic-194f3d?style=flat-square">
-<img alt="CSS3" src="https://img.shields.io/badge/CSS3-Responsive-194f3d?style=flat-square">
-<img alt="Node.js 22+" src="https://img.shields.io/badge/Node.js-22%2B-194f3d?style=flat-square">
-<img alt="MIT license" src="https://img.shields.io/badge/License-MIT-194f3d?style=flat-square">
+<img alt="JavaScript ES Modules" src="https://img.shields.io/badge/JavaScript-ES_Modules-172632?style=flat-square">
+<img alt="HTML5" src="https://img.shields.io/badge/HTML5-Semantic-172632?style=flat-square">
+<img alt="CSS3" src="https://img.shields.io/badge/CSS3-Responsive-172632?style=flat-square">
+<img alt="Node.js 22+" src="https://img.shields.io/badge/Node.js-22%2B-172632?style=flat-square">
+<img alt="MIT license" src="https://img.shields.io/badge/License-MIT-172632?style=flat-square">
 </p>
 <p align="center"><a href="https://hubmorrow.sturdynova2049.chatgpt.site"><strong>Open the app ↗</strong></a> · <a href="docs/ARCHITECTURE.md">Architecture</a> · <a href="docs/QA.md">Test record</a> · <a href="docs/RESEARCH.md">Research</a></p>
 
@@ -15,7 +15,7 @@
 
 **For community coordinators preparing for an outage.** Enter each hub’s power needs, choose your batteries, and calculate how to share them. Test the plan with less sun or a longer outage before you commit.
 
-Built for **IEEE Hack for Humanity · Power & Energy**. The core journey works in the browser with **no account, API key, application server, or third-party runtime packages**. Starting hub values are sample data; optional Charlotte weather comes from Open-Meteo.
+Built for **IEEE Hack for Humanity · Power & Energy**. The core journey works in the browser with **no account, API key, application server, or third-party runtime packages**. Starting hub values are sample data; optional reference-location weather comes from Open-Meteo.
 
 ## The problem
 
@@ -34,7 +34,7 @@ Hubmorrow answers a bounded question: **given these inputs, how should whole bat
 - Hourly solar/storage/load balance, service coverage, unmet kWh, and a priority-weighted score.
 - A fixed-allocation stress lab: planned outage, 40% solar reduction, and a 12-hour longer outage with 15% higher demand (60-hour cap).
 - A round-robin comparison that obeys the same selected floor.
-- Optional Open-Meteo hourly forecast for fixed Charlotte coordinates, with timeout, response validation, explicit provenance, and a synthetic-weather reset.
+- Optional Open-Meteo hourly forecast for fixed reference coordinates, with timeout, response validation, explicit provenance, and a synthetic-weather reset.
 - Local scenario saving, restore/removal, file or pasted JSON import, JSON/clipboard export, formula-safe CSV export, and print report.
 - Per-hub allocation explanations tied to actual minimum packs and one-pack counterfactual score losses.
 - Responsive layouts, keyboard-operable forms and dialogs, accessible hourly data tables, and reduced-motion support.
@@ -127,7 +127,7 @@ Recommended security headers are supplied in `dist/_headers` for hosts that supp
 
 ## Privacy, safety, limitations
 
-Scenario inputs remain in the user's browser unless exported. Weather requests include only fixed Charlotte coordinates and normal network metadata. Local storage is not encrypted; avoid entering sensitive names or medical details. Same-device visitors to the same browser profile may access its saved scenarios.
+Scenario inputs remain in the user's browser unless exported. Weather requests include only fixed reference coordinates and normal network metadata. Local storage is not encrypted; avoid entering sensitive names or medical details. Same-device visitors to the same browser profile may access its saved scenarios.
 
 This model omits site surveys, installation/travel time, inverter compatibility, islanding equipment, surge currents, battery aging, detailed PV geometry, thermal comfort, weather probabilities, and electrical-network topology. Assumed occupancy is not a count of unique people helped. Energy availability does not prove food safety, medical suitability, or shelter suitability. Real deployment requires measured loads, community consultation, electrical engineering review, compatible certified equipment, and approved operating procedures.
 
